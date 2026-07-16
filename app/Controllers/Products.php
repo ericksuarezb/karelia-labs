@@ -7,6 +7,15 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Products extends BaseController
 {
+    /**
+     * @var array<string, string>
+     */
+    private const SEO_IMAGE_SLUGS = [
+        'serum-antiedad-efecto-tensor' => 'serum-antiedad-instantaneo',
+        'serum-crema-reafirmante-peptidos' => 'serum-antiedad-peptidos-hidratantes',
+        'serum-regenerador-hidratacion' => 'serum-regenerador-hidratante',
+    ];
+
     public function index(): string
     {
         return view('products/index', [
@@ -49,6 +58,27 @@ class Products extends BaseController
 
         return view('products/usage', [
             'title' => $product['name'] . ' | Modo de uso',
+            'metaDescription' => 'Ficha visual fullscreen de ' . $product['name'] . ' para acceso directo por QR.',
+            'product' => $product,
+        ]);
+    }
+
+    public function seoImagePage(string $seoSlug): string
+    {
+        $productSlug = self::SEO_IMAGE_SLUGS[$seoSlug] ?? null;
+
+        if ($productSlug === null) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        $product = ProductCatalog::find($productSlug);
+
+        if ($product === null) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        return view('products/usage', [
+            'title' => $product['name'] . ' | Karelia Labs',
             'metaDescription' => 'Ficha visual fullscreen de ' . $product['name'] . ' para acceso directo por QR.',
             'product' => $product,
         ]);
