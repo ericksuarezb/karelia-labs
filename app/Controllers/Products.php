@@ -14,6 +14,13 @@ class Products extends BaseController
         'serum-antiedad-efecto-tensor' => 'serum-antiedad-instantaneo',
         'serum-crema-reafirmante-peptidos' => 'serum-antiedad-peptidos-hidratantes',
         'serum-regenerador-hidratacion' => 'serum-regenerador-hidratante',
+        'crema-concha-nacar-arroz' => 'crema-concha-nacar-arroz',
+        'crema-hidratante-niacinamida' => 'crema-manos',
+        'crema-tatuajes-mujer-pantenol' => 'crema-tatuajes-fem',
+        'crema-tatuajes-hombre-pantenol' => 'crema-tatuajes-hombre',
+        'gel-botanico-arnica-calendula-romero' => 'gel-arnica-botanicos',
+        'serum-capilar-mujer-minoxidil-5-keratina' => 'kargelix-minoxidil-fem',
+        'serum-capilar-hombre-minoxidil-5-barba' => 'maxmachin-minoxidil-hom',
     ];
 
     public function index(): string
